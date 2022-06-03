@@ -30,8 +30,10 @@ public class LoginServlet extends HttpServlet {
 
 			if (id.equals(login_id) && password.equals(login_pass)) {
 				//ログイン成功→次に画面へ
+				request.setAttribute("send", s);
 				request.getRequestDispatcher("/jsp/welcome.jsp").forward(request, response);
 			}
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
