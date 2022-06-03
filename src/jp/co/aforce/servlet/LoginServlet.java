@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
 			) throws ServletException, IOException {
 
 		try {
-
+			//入力値取得
 			String id = request.getParameter("id");
 			String password = request.getParameter("password");
 
@@ -29,11 +29,14 @@ public class LoginServlet extends HttpServlet {
 			String login_pass = s.getPassword();
 
 			if (id.equals(login_id) && password.equals(login_pass)) {
-				//ログイン成功→次に画面へ
+				//ログイン成功
 				request.setAttribute("send", s);
 				request.getRequestDispatcher("/jsp/welcome.jsp").forward(request, response);
+			}else {
+				//ログイン失敗
+				request.setAttribute("miss", "miss");
+				request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
 			}
-
 
 		} catch (Exception e) {
 			e.printStackTrace();
